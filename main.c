@@ -1,6 +1,6 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
-#include <stdbool.h>
 
 /* struct Date{
     int day;
@@ -16,7 +16,7 @@ struct Habit{
 };
 
 int main(){
-    /* char answer[100];
+    char answer[100];
     printf("Type what you want:\n");
     fgets(answer,100,stdin);
     printf("You typed: %s\n",answer);
@@ -46,10 +46,10 @@ int main(){
         printf("Date: %d\n", habitS[i].date.year);
     }
 return 0;
-} */ 
+} */
 
-//Array
-
-
-
-
+// compiling with gcc -Werror -Wall -Wextra -fsanitize = address -g
+int main(void) {
+  printf("My name is c3m4 \n");
+  return 0;
+}
