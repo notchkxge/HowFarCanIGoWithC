@@ -48,8 +48,13 @@ int main(){
 return 0;
 } */
 
-// compiling with gcc -Werror -Wall -Wextra -fsanitize = address -g
+// compiling with/without gcc -Werror -Wall -Wextra -fsanitize = address -g
 int main(void) {
-  printf("My name is c3m4 \n");
+  // printf("My name is c3m4 \n");
+  char buffer[5];
+  int index = 100000000; // more then 100 000 000  is out of bound and fsanitize
+                         // wont allow it to compile
+  buffer[index] = 'A';
+  printf("%c\n", buffer[index]);
   return 0;
 }
