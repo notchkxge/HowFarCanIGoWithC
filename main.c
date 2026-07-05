@@ -1,6 +1,7 @@
-#include <stdbool.h>
+// #include <stdbool.h>
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
+// #include <string.h>
 
 /* struct Date{
     int day;
@@ -49,7 +50,7 @@ return 0;
 } */
 
 // compiling with/without gcc -Werror -Wall -Wextra -fsanitize = address -g
-int main(void) {
+/*int main(void) {
   // printf("My name is c3m4 \n");
   char buffer[5];
   int index = 100000000; // more then 100 000 000  is out of bound and fsanitize
@@ -57,4 +58,31 @@ int main(void) {
   buffer[index] = 'A';
   printf("%c\n", buffer[index]);
   return 0;
+}*/
+//------------------------------------------------------------------
+
+int main() {
+  FILE *ptr = fopen("test.txt", "r");
+
+  if (ptr == NULL) {
+    printf("%s", "error occured when creating file ");
+    exit(1);
+  }
+
+  //  char buff[100];
+  fseek(ptr, 0, SEEK_END);
+  printf("%s %ld\n", "Position in the file: ", ftell(ptr));
+
+  int filePosition = ftell(ptr);
+
+  for (int i = filePosition - 1; i >= 0; i--) {
+    fseek(ptr, i, SEEK_SET);
+    printf("%c", fgetc(ptr));
+  }
+
+  fclose(ptr);
+
+  return 0;
 }
+
+//----------------------------------------------------------
