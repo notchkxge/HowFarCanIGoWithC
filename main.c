@@ -139,23 +139,46 @@ return 0;
 // Question: When you convert these 2 bytes into a local uint16_t using ntohs()
 // for your code to read, what decimal number will your program see?
 
+// #include <arpa/inet.h>
+// #include <stdint.h>
+// #include <stdio.h>
+//
+// int main() {
+//   unsigned char buffer[2] = {0x04, 0x00};
+//   uint16_t raw_network = *(uint16_t *)buffer;
+//
+//   printf("Network format: %02X %02X\n", buffer[0], buffer[1]);
+//
+//   unsigned char *network_byte = (unsigned char *)&raw_network;
+//   uint16_t host_num = ntohs(raw_network);
+//   unsigned char *host_ptr = (unsigned char *)&host_num;
+//
+//   printf("Host format: %02X %02X\n", host_ptr[0], host_ptr[1]);
+//
+//   printf("decimal format: %u\n", host_num);
+//
+//   return 0;
+// }
+// -----------------------------------------------------------------------------
+
 #include <arpa/inet.h>
 #include <stdint.h>
 #include <stdio.h>
 
 int main() {
-  unsigned char buffer[2] = {0x04, 0x00};
-  uint16_t raw_network = *(uint16_t *)buffer;
+  unsigned char buffer[6] = {0x04, 0x00, 0xAC, 0x10, 0x00, 0x02};
 
-  printf("Network format: %02X %02X\n", buffer[0], buffer[1]);
+  uint16_t raw_port = *(uint16_t *)buffer;
 
-  unsigned char *network_byte = (unsigned char *)&raw_network;
-  uint16_t host_num = ntohs(raw_network);
-  unsigned char *host_ptr = (unsigned char *)&host_num;
+  uint16_t host_port = ntohs(raw_port);
+  unsigned char *network_port = (unsigned char *)&host_port;
+  printf("Port: %02X %02X\n", network_port[0], network_port[1]);
 
-  printf("Host format: %02X %02X\n", host_ptr[0], host_ptr[1]);
-
-  printf("decimal format: %u\n", host_num);
+  uint32_t raw_ip = *(uint32_t *)(buffer + 2);
+  uint32_t host_ip = ntohl(raw_ip);
+  unsigned char *network_ip = (unsigned char *)&host_ip;
+  printf("Ip format: %2u %2u %2u %2u\n", network_ip[0], network_ip[1],
+         network_ip[2], network_ip[3]);
 
   return 0;
 }
