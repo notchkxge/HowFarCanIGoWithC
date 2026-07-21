@@ -1,4 +1,5 @@
 // #include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 // #include <string.h>
@@ -61,28 +62,48 @@ return 0;
 }*/
 //------------------------------------------------------------------
 
+// int main() {
+//   FILE *ptr = fopen("test.txt", "r");
+//
+//   if (ptr == NULL) {
+//     printf("%s", "error occured when creating file ");
+//     exit(1);
+//   }
+//
+//   //  char buff[100];
+//   fseek(ptr, 0, SEEK_END);
+//   printf("%s %ld\n", "Position in the file: ", ftell(ptr));
+//
+//   long filePosition = ftell(ptr);
+//
+//   for (long i = filePosition - 1; i >= 0; i--) {
+//     fseek(ptr, i, SEEK_SET);
+//     printf("%c", fgetc(ptr));
+//   }
+//   printf("\n");
+//
+//   fclose(ptr);
+//
+//   return 0;
+// }
+
+//-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+// Memory Peek
+#include <arpa/inet.h> // htons, htonl
+#include <stdio.h>
 int main() {
-  FILE *ptr = fopen("test.txt", "r");
+  uint16_t host_num = -0x1234;
+  unsigned char *host_ptr = (unsigned char *)&host_num;
+  printf("Host memory (Little Endian x86): %02X %02X\n", host_ptr[0],
+         host_ptr[1]);
 
-  if (ptr == NULL) {
-    printf("%s", "error occured when creating file ");
-    exit(1);
-  }
+  // convert
+  uint16_t net_num = htons(host_num);
 
-  //  char buff[100];
-  fseek(ptr, 0, SEEK_END);
-  printf("%s %ld\n", "Position in the file: ", ftell(ptr));
+  // Network side
 
-  int filePosition = ftell(ptr);
-
-  for (int i = filePosition - 1; i >= 0; i--) {
-    fseek(ptr, i, SEEK_SET);
-    printf("%c", fgetc(ptr));
-  }
-
-  fclose(ptr);
-
-  return 0;
+  unsigned char *net_ptr = (unsigned char *)&net_num;
+  printf("Network Byte Order (Big Endian): %02X %02X\n", net_ptr[0],
+         net_ptr[1]);
 }
-
-//----------------------------------------------------------
