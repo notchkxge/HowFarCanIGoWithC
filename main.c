@@ -1,4 +1,5 @@
 // #include <stdbool.h>
+#include <netinet/in.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -90,20 +91,71 @@ return 0;
 //-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 // Memory Peek
-#include <arpa/inet.h> // htons, htonl
+// #include <arpa/inet.h> // htons, htonl
+// #include <stdio.h>
+// int main() {
+//   uint16_t host_num = 0x1234;
+//   unsigned char *host_ptr = (unsigned char *)&host_num;
+//   printf("Host memory (Little Endian x86): %02X %02X\n", host_ptr[0],
+//          host_ptr[1]);
+//
+//   // convert
+//   uint16_t net_num = htons(host_num);
+//
+//   // Network side
+//
+//   unsigned char *net_ptr = (unsigned char *)&net_num;
+//   printf("Network Byte Order (Big Endian): %02X %02X\n", net_ptr[0],
+//          net_ptr[1]);
+// }
+//---------------------------------------------------------------------------------------
+// You have a 16-bit integer in your code: uint16_t x = 0x1A2B;
+// Your computer is Little Endian (Intel/AMD).
+// Question: What exact hexadecimal number will htons(x) return?
+// (Show your work: what are the bytes before and after?)
+//
+// #include <arpa/inet.h>
+// #include <stdint.h>
+// #include <stdio.h>
+//
+// int main() {
+//   uint16_t x = 0x1A2B;
+//   unsigned char *host_ptr = (unsigned char *)&x;
+//   printf("Little Endian format: %02X %02X\n", host_ptr[0], host_ptr[1]);
+//
+//   uint16_t net_num = htons(x);
+//   unsigned char *host_num = (unsigned char *)&net_num;
+//
+//   printf("Big Endian format: %02X %02X\n", host_num[0], host_num[1]);
+//
+//   return 0;
+// }
+//-------------------------------------------------------------------------
+// You are writing a UDP server. Your code receives a network packet.
+// You look at the raw bytes of the UDP source port (which are the very first 2
+// bytes of the UDP header) and you see this in memory: Byte 0: 0x04 , Byte 1:
+// 0x00 (This 04 00 was sent over the network).
+//
+// Question: When you convert these 2 bytes into a local uint16_t using ntohs()
+// for your code to read, what decimal number will your program see?
+
+#include <arpa/inet.h>
+#include <stdint.h>
 #include <stdio.h>
+
 int main() {
-  uint16_t host_num = -0x1234;
+  unsigned char buffer[2] = {0x04, 0x00};
+  uint16_t raw_network = *(uint16_t *)buffer;
+
+  printf("Network format: %02X %02X\n", buffer[0], buffer[1]);
+
+  unsigned char *network_byte = (unsigned char *)&raw_network;
+  uint16_t host_num = ntohs(raw_network);
   unsigned char *host_ptr = (unsigned char *)&host_num;
-  printf("Host memory (Little Endian x86): %02X %02X\n", host_ptr[0],
-         host_ptr[1]);
 
-  // convert
-  uint16_t net_num = htons(host_num);
+  printf("Host format: %02X %02X\n", host_ptr[0], host_ptr[1]);
 
-  // Network side
+  printf("decimal format: %u\n", host_num);
 
-  unsigned char *net_ptr = (unsigned char *)&net_num;
-  printf("Network Byte Order (Big Endian): %02X %02X\n", net_ptr[0],
-         net_ptr[1]);
+  return 0;
 }
