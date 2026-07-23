@@ -161,24 +161,101 @@ return 0;
 // }
 // -----------------------------------------------------------------------------
 
-#include <arpa/inet.h>
-#include <stdint.h>
-#include <stdio.h>
+// #include <arpa/inet.h>
+// #include <stdint.h>
+// #include <stdio.h>
+//
+// int main() {
+//   unsigned char buffer[6] = {0x04, 0x00, 0xAC, 0x10, 0x00, 0x02};
+//
+//   uint16_t raw_port = *(uint16_t *)buffer;
+//
+//   uint16_t host_port = ntohs(raw_port);
+//   unsigned char *network_port = (unsigned char *)&host_port;
+//   printf("Port: %02X %02X\n", network_port[0], network_port[1]);
+//
+//   uint32_t raw_ip = *(uint32_t *)(buffer + 2);
+//   uint32_t host_ip = ntohl(raw_ip);
+//   unsigned char *network_ip = (unsigned char *)&host_ip;
+//   printf("Ip format: %u. %u. %u. %u.\n", network_ip[0], network_ip[1],
+//          network_ip[2], network_ip[3]);
+//
+//   return 0;
+// }
+// --------------------------------------------------------------------------------
+// rerun basic C syntax, pointers, structs, memory
+// 1-------------------------------------------------------------------------------------
+// Write a C program that takes a floating-point number (a decimal number,
+// like 3.14159) from the user and prints it, formatted to display with only two
+// decimal places.
+// int main(void) {
+//   float x;
+//   printf("enter the float number:\n");
+//   scanf("%f", &x);
+//   printf("%.2f\n", x);
+//
+//   return 0;
+// }
 
-int main() {
-  unsigned char buffer[6] = {0x04, 0x00, 0xAC, 0x10, 0x00, 0x02};
+// 2-------------------------------------------------------------------------------------
+// Write a C program that prompts the user to enter two separate integers,
+// calculates their sum, and then prints the result.
 
-  uint16_t raw_port = *(uint16_t *)buffer;
+// int main() {
+//   printf("enter 2 numbers to add:\n");
+//   int x, y;
+//   scanf("%d %d", &x, &y);
+//   int z = x + y;
+//   printf("%d\n", z);
+//   return 0;
+// }
 
-  uint16_t host_port = ntohs(raw_port);
-  unsigned char *network_port = (unsigned char *)&host_port;
-  printf("Port: %02X %02X\n", network_port[0], network_port[1]);
+// 3-------------------------------------------------------------------------------------
+// Write a C program that calculates and prints the sum, difference, product,
+// and quotient (division) of two integers
 
-  uint32_t raw_ip = *(uint32_t *)(buffer + 2);
-  uint32_t host_ip = ntohl(raw_ip);
-  unsigned char *network_ip = (unsigned char *)&host_ip;
-  printf("Ip format: %2u %2u %2u %2u\n", network_ip[0], network_ip[1],
-         network_ip[2], network_ip[3]);
+// int main() {
+//   int x, y;
+//   scanf("%d %d", &x, &y);
+//   printf("addition:%d\n", x + y);
+//   printf("difference:%d\n", x - y);
+//
+//   printf("sum:%d\n", x * y);
+//   printf("division:%d\n", x / y);
+//   return 0;
+// }
 
-  return 0;
-}
+// 4-------------------------------------------------------------------------------------
+// Write a C program to read two integer values, A and B,
+// and then swap their contents so that A holds the original value of B,
+// and B holds the original value of A. Use a third, temporary variable.
+
+// int main() {
+//   int a, b, c;
+//   scanf("%d %d", &a, &b);
+//   c = a;
+//   a = b;
+//   b = c;
+//   printf("order of a:%d of b:%d\n", a, b);
+//   return 0;
+// }
+
+// 5-------------------------------------------------------------------------------------
+// Write a C program swap two integer values, A and B,
+// without using a third temporary variable
+
+// int main() {
+//   int a, b;
+//   scanf("%d %d", &a, &b);
+//   a ^= b;
+//   b ^= a;
+//   a ^= b;
+//
+//   printf("%d %d\n", a, b);
+//   return 0;
+// }
+// 6------------------------------------------------------------------------------------
+// Write a C program to print the first 10 natural numbers (1 to 10)
+// in ascending order using a for loop
+
+int main() {}
