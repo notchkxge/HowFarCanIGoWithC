@@ -258,4 +258,96 @@ return 0;
 // Write a C program to print the first 10 natural numbers (1 to 10)
 // in ascending order using a for loop
 
-int main() {}
+// int main() {
+//   for (int x = 10; x > 0; x--) {
+//     printf("%d ", x);
+//   }
+//   return 0;
+// }
+// while loop
+// int main() {
+//   int x = 10;
+//   while (x > 0) {
+//     x--;
+//     printf("%d ", x);
+//   }
+//   return 0;
+// }
+
+// 7------------------------------------------------------------------------------------
+// Write a C program to print odd numbers between 1 and 20
+// using a do...while loop.
+
+// int main() {
+//   int i = 1;
+//   do {
+//     printf("%d ", i);
+//     i++;
+//   } while (i < 21);
+//   return 0;
+// }
+
+// 8------------------------------------------------------------------------------------
+// Create a simple menu-driven program that displays options
+//(“1. Greet”, “2. Say Goodbye”, “3. Exit”). Use a do-while loop and
+// a switch statement to repeatedly show the menu and process the user’s
+// choice until they select the ‘Exit’ option.
+
+// int main(void) {
+//   int menu;
+//   do {
+//     if (scanf("%d", &menu) != 1) {
+//       while (getchar() != '\n') {
+//       }
+//       printf("Invalid input!!!\n");
+//       continue;
+//     }
+//     switch (menu) {
+//     case 1:
+//       printf("Greet\n");
+//       break;
+//
+//     case 2:
+//       printf("Say Goodbye\n");
+//       break;
+//
+//     case 3:
+//       printf("Exit\n");
+//       return 0;
+//
+//     default:
+//       printf("choose between 1, 2 and 3!\n");
+//       break;
+//     }
+//   } while (1);
+//   return 0;
+// }
+
+// 9------------------------------------------------------------------------------------
+// Write a C program to calculate the factorial of a given non-negative integer
+// N. (The factorial of N is the product of all positive integers less than or
+// equal to N, denoted N!).
+// int main(void) {
+//   int x;
+//   long long factorial = 1;
+//
+//   printf("enter an integer to calcutate its factorial: \n");
+//   if (scanf("%d", &x) != 1) {
+//     printf("error needs an integer\n");
+//     return 1;
+//   }
+//   if (x < 0) {
+//     // x *= -1;
+//     printf("Error: factorial is not defined for negative numbers.\n");
+//     return -1;
+//   }
+//   printf("you entered %d\n", x);
+//
+//   for (int y = 2; y <= x; y++) {
+//     factorial *= y;
+//   }
+//   printf("%lld is the factorial of %d\n", factorial, x);
+//   return 0;
+// }
+
+// 10------------------------------------------------------------------------------------
