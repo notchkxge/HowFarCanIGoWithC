@@ -1,8 +1,11 @@
 // #include <stdbool.h>
 #include <netinet/in.h>
+#include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <sys/socket.h>
 // #include <string.h>
 
 /* struct Date{
@@ -351,3 +354,48 @@ return 0;
 // }
 
 // 10------------------------------------------------------------------------------------
+// Write a C program to counts the total number of digits in a given number.
+
+// int main(void) {
+//   int x, y = 0;
+//   scanf("%d", &x);
+//
+//   while (x != 0) {
+//     x /= 10;
+//     y++;
+//   }
+//   printf("%d\n", y);
+//   return 0;
+// }
+
+// 11------------------------------------------------------------------------------------
+// Write a C program to check if a given integer is a palindrome
+//(reads the same forwards and backward, e.g., 121,3553).
+
+int main(void) {
+  char x[100];
+
+  if (fgets(x, sizeof(x), stdin) == NULL) {
+    perror("fgets");
+    return 1;
+  }
+  // here we yoink the new line
+  size_t pos = (strcspn(x, "\n"));
+  if (x[pos] == '\n') {
+    x[pos] = '\0';
+  }
+  // here we yoink the extra buffer that we dont need
+  else {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF)
+      ;
+  }
+
+  size_t len = strlen(x);
+
+  for (int i = len - 1; i >= 0; i--) {
+    printf("%c", x[i]);
+  }
+  printf("\n");
+  return 0;
+}
