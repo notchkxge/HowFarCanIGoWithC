@@ -372,30 +372,47 @@ return 0;
 // Write a C program to check if a given integer is a palindrome
 //(reads the same forwards and backward, e.g., 121,3553).
 
+// int main(void) {
+//   char x[100];
+//
+//   if (fgets(x, sizeof(x), stdin) == NULL) {
+//     perror("fgets");
+//     return 1;
+//   }
+//   // here we yoink the new line
+//   size_t pos = (strcspn(x, "\n"));
+//   if (x[pos] == '\n') {
+//     x[pos] = '\0';
+//   }
+//   // here we yoink the extra buffer that we dont need
+//   else {
+//     int c;
+//     while ((c = getchar()) != '\n' && c != EOF)
+//       ;
+//   }
+//
+//   size_t len = strlen(x);
+//
+//   for (int i = len - 1; i >= 0; i--) {
+//     printf("%c", x[i]);
+//   }
+//   printf("\n");
+//   return 0;
+// }
+
+// 12------------------------------------------------------------------------------------
+// Write a C program to print all odd numbers between 1 and N using a single for
+// loop and use the continue keyword to skip the even numbers.
+
 int main(void) {
-  char x[100];
+  int N = 20;
 
-  if (fgets(x, sizeof(x), stdin) == NULL) {
-    perror("fgets");
-    return 1;
+  for (int x = 1; x <= N; x++) {
+    if (x % 2 == 0) {
+      continue;
+    } else {
+      printf("%d\n", x);
+    }
   }
-  // here we yoink the new line
-  size_t pos = (strcspn(x, "\n"));
-  if (x[pos] == '\n') {
-    x[pos] = '\0';
-  }
-  // here we yoink the extra buffer that we dont need
-  else {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF)
-      ;
-  }
-
-  size_t len = strlen(x);
-
-  for (int i = len - 1; i >= 0; i--) {
-    printf("%c", x[i]);
-  }
-  printf("\n");
   return 0;
 }
