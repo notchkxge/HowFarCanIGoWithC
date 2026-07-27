@@ -422,24 +422,81 @@ return 0;
 //(The series starts with 0, 1 and each subsequent number is the sum of the two
 // preceding ones: 0,1,1,2,3,5,8,…).
 
+// int main(void) {
+//   int n = 8;
+//   int d1 = 0;
+//   int d2 = 1;
+//   int d3 = d1 + d2;
+//
+//   printf("%d %d %d", d1, d2, d3);
+//
+//   for (int i = 3; i < n; i++) {
+//     d1 = d2;
+//     d2 = d3;
+//     d3 = d1 + d2;
+//     printf(" %d", d3);
+//   }
+//   printf("\n");
+//
+//   return 0;
+// }
+//
+// //
+// 14------------------------------------------------------------------------------------
+// Write a C program that uses nested for-loops to print a solid rectangle
+// pattern of asterisks (*) with 3 rows and 3 columns
+// nested loop
+// int main(void) {
+//   for (int i = 1; i <= 3; i++) {
+//     for (int j = 1; j <= 3; j++) {
+//       printf("(%d %d)", i, j);
+//     }
+//     printf("\n");
+//   }
+//   return 0;
+// }
+// 14
+
+// int main() {
+//   for (int i = 1; i <= 3; i++) {
+//     for (int j = 1; j <= 3; j++) {
+//       printf("*");
+//     }
+//     printf("\n");
+//   }
+//   return 0;
+// }
+
+// 15------------------------------------------------------------------------------------
+// Write a C program that prompts the user to enter 5 integer values,
+// stores them in an array, and then prints all the stored elements.
+
+// int main() {
+//   int x[5];
+//   printf("Enter 5 integer values\n");
+//   int i;
+//   for (i = 0; i < 5; i++) {
+//     scanf("%d", &x[i]);
+//   }
+//   printf("the elements stored are: %d %d %d %d %d\n", x[0], x[1], x[2], x[3],
+//          x[4]);
+//
+//   return 0;
+// }
+
+// 16------------------------------------------------------------------------------------
+// Write a C program to calculate and print the sum of all elements in
+// a pre-initialized integer array of size 5
+
 int main(void) {
-  int n = 8;
-  int d1 = 0;
-  int d2 = 1;
-  int d3 = d1 + d2;
+  int arr[5] = {10, 5, 20, 15, 30};
 
-  printf("%d %d %d", d1, d2, d3);
+  int sum = 0;
 
-  for (int i = 3; i < n; i++) {
-    d1 = d2;
-    d2 = d3;
-    d3 = d1 + d2;
-    printf(" %d", d3);
+  int len = (sizeof arr / sizeof arr[0]);
+  for (int i = 0; i < len; i++) {
+    sum += arr[i];
   }
-  printf("\n");
-
+  printf("%d\n", sum);
   return 0;
 }
-
-// 14------------------------------------------------------------------------------------
-//
