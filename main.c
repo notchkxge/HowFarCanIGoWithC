@@ -1,4 +1,5 @@
 // #include <stdbool.h>
+#include <arpa/inet.h>
 #include <netinet/in.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -6,7 +7,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/socket.h>
-// #include <string.h>
 
 /* struct Date{
     int day;
@@ -404,15 +404,42 @@ return 0;
 // Write a C program to print all odd numbers between 1 and N using a single for
 // loop and use the continue keyword to skip the even numbers.
 
-int main(void) {
-  int N = 20;
+// int main(void) {
+//   int N = 20;
+//
+//   for (int x = 1; x <= N; x++) {
+//     if (x % 2 == 0) {
+//       continue;
+//     } else {
+//       printf("%d\n", x);
+//     }
+//   }
+//   return 0;
+// }
 
-  for (int x = 1; x <= N; x++) {
-    if (x % 2 == 0) {
-      continue;
-    } else {
-      printf("%d\n", x);
-    }
+// 13------------------------------------------------------------------------------------
+// Write a C program to print the first N terms of the Fibonacci series.
+//(The series starts with 0, 1 and each subsequent number is the sum of the two
+// preceding ones: 0,1,1,2,3,5,8,…).
+
+int main(void) {
+  int n = 8;
+  int d1 = 0;
+  int d2 = 1;
+  int d3 = d1 + d2;
+
+  printf("%d %d %d", d1, d2, d3);
+
+  for (int i = 3; i < n; i++) {
+    d1 = d2;
+    d2 = d3;
+    d3 = d1 + d2;
+    printf(" %d", d3);
   }
+  printf("\n");
+
   return 0;
 }
+
+// 14------------------------------------------------------------------------------------
+//
