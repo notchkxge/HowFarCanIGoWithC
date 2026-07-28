@@ -505,20 +505,47 @@ return 0;
 // Write a C program to find and print both the largest (maximum)
 // and smallest (minimum) elements in a given integer array.
 
+// int main(void) {
+//   int arr[6] = {55, 12, 89, 7, 42, 60};
+//   int len = (sizeof arr / sizeof arr[0]);
+//   int MAX = arr[0];
+//   int MIN = arr[0];
+//   for (int i = 0; i < len; i++) {
+//     printf("%d\n", arr[i]);
+//     if (arr[i] > MAX) {
+//       MAX = arr[i];
+//     } if (arr[i] < MIN) {
+//       MIN = arr[i];
+//     }
+//   }
+//   printf("MAX: %d\nMIN: %d\n", MAX, MIN);
+//   return 0;
+// }
+
+// 18------------------------------------------------------------------------------------
+// Write a C program that takes an integer array and a search value (key)
+// from the user. Check if the key is present in the array.
+// If found, print its index; otherwise, print a “Not found” message
+
 int main(void) {
-  int arr[6] = {55, 12, 89, 7, 42, 60};
+  int arr[5] = {10, 25, 30, 45, 50};
+  int x;
+  printf("Type a number\n");
+  scanf("%d", &x);
+
+  int found = 0;
+
   int len = (sizeof arr / sizeof arr[0]);
-  int MAX = arr[0];
-  int MIN = arr[0];
   for (int i = 0; i < len; i++) {
-    printf("%d\n", arr[i]);
-    if (arr[i] > MAX) {
-      MAX = arr[i];
-    }
-    if (arr[i] < MIN) {
-      MIN = arr[i];
+    if (x == arr[i]) {
+      printf("%d found at index: %d\n", x, i);
+      found = 1;
+      break;
     }
   }
-  printf("MAX: %d\nMIN: %d\n", MAX, MIN);
+  if (found == 0) {
+    printf("No found\n");
+  }
+
   return 0;
 }
