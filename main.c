@@ -488,15 +488,37 @@ return 0;
 // Write a C program to calculate and print the sum of all elements in
 // a pre-initialized integer array of size 5
 
+// int main(void) {
+//   int arr[5] = {10, 5, 20, 15, 30};
+//
+//   int sum = 0;
+//
+//   int len = (sizeof arr / sizeof arr[0]);
+//   for (int i = 0; i < len; i++) {
+//     sum += arr[i];
+//   }
+//   printf("%d\n", sum);
+//   return 0;
+// }
+//
+// 17------------------------------------------------------------------------------------
+// Write a C program to find and print both the largest (maximum)
+// and smallest (minimum) elements in a given integer array.
+
 int main(void) {
-  int arr[5] = {10, 5, 20, 15, 30};
-
-  int sum = 0;
-
+  int arr[6] = {55, 12, 89, 7, 42, 60};
   int len = (sizeof arr / sizeof arr[0]);
+  int MAX = arr[0];
+  int MIN = arr[0];
   for (int i = 0; i < len; i++) {
-    sum += arr[i];
+    printf("%d\n", arr[i]);
+    if (arr[i] > MAX) {
+      MAX = arr[i];
+    }
+    if (arr[i] < MIN) {
+      MIN = arr[i];
+    }
   }
-  printf("%d\n", sum);
+  printf("MAX: %d\nMIN: %d\n", MAX, MIN);
   return 0;
 }
