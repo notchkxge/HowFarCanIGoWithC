@@ -527,25 +527,44 @@ return 0;
 // from the user. Check if the key is present in the array.
 // If found, print its index; otherwise, print a “Not found” message
 
-int main(void) {
-  int arr[5] = {10, 25, 30, 45, 50};
+// int main(void) {
+//   int arr[5] = {10, 25, 30, 45, 50};
+//   int x;
+//   printf("Type a number\n");
+//   scanf("%d", &x);
+//
+//   int found = 0;
+//
+//   int len = (sizeof arr / sizeof arr[0]);
+//   for (int i = 0; i < len; i++) {
+//     if (x == arr[i]) {
+//       printf("%d found at index: %d\n", x, i);
+//       found = 1;
+//       break;
+//     }
+//   }
+//   if (found == 0) {
+//     printf("No found\n");
+//   }
+//
+//   return 0;
+// }
+
+// 19------------------------------------------------------------------------------------
+// Write a C function named check_even_odd that takes an integer as
+// a parameter and prints whether it is “Even” or “Odd”
+// directly within the function. Call this function from main()
+
+void check_even_odd(int x) {
+  if (x % 2 == 0) {
+    printf("%d is even\n", x);
+  } else {
+    printf("%d is odd\n", x);
+  }
+}
+int main() {
   int x;
-  printf("Type a number\n");
   scanf("%d", &x);
-
-  int found = 0;
-
-  int len = (sizeof arr / sizeof arr[0]);
-  for (int i = 0; i < len; i++) {
-    if (x == arr[i]) {
-      printf("%d found at index: %d\n", x, i);
-      found = 1;
-      break;
-    }
-  }
-  if (found == 0) {
-    printf("No found\n");
-  }
-
+  check_even_odd(x);
   return 0;
 }
