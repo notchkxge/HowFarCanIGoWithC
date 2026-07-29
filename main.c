@@ -555,16 +555,40 @@ return 0;
 // a parameter and prints whether it is “Even” or “Odd”
 // directly within the function. Call this function from main()
 
-void check_even_odd(int x) {
-  if (x % 2 == 0) {
-    printf("%d is even\n", x);
-  } else {
-    printf("%d is odd\n", x);
+// void check_even_odd(int x) {
+//   if (x % 2 == 0) {
+//     printf("%d is even\n", x);
+//   } else {
+//     printf("%d is odd\n", x);
+//   }
+// }
+// int main() {
+//   int x;
+//   scanf("%d", &x);
+//   check_even_odd(x);
+//   return 0;
+// }
+
+// 20------------------------------------------------------------------------------------
+// Write a C function named find_max that takes an integer array
+// and its size as parameters, and returns the largest element in the array.
+
+int find_max(int data[], int len) {
+  int max = data[len - 1];
+  for (int i = 0; i < len; i++) {
+    if (data[i] > max) {
+      max = data[i];
+    }
   }
+  return max;
 }
-int main() {
-  int x;
-  scanf("%d", &x);
-  check_even_odd(x);
+int main(void) {
+  int data[] = {8, 15, 2, 70, 9, 33};
+  int len;
+  len = (sizeof data / sizeof data[0]);
+  find_max(data, len);
+  int maxValue = find_max(data, len);
+  printf("%d\n", maxValue);
+
   return 0;
 }
