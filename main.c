@@ -573,22 +573,45 @@ return 0;
 // Write a C function named find_max that takes an integer array
 // and its size as parameters, and returns the largest element in the array.
 
-int find_max(int data[], int len) {
-  int max = data[len - 1];
-  for (int i = 0; i < len; i++) {
-    if (data[i] > max) {
-      max = data[i];
-    }
-  }
-  return max;
-}
+// int find_max(int data[], int len) {
+//   int max = data[len - 1];
+//   for (int i = 0; i < len; i++) {
+//     if (data[i] > max) {
+//       max = data[i];
+//     }
+//   }
+//   return max;
+// }
+// int main(void) {
+//   int data[] = {8, 15, 2, 70, 9, 33};
+//   int len;
+//   len = (sizeof data / sizeof data[0]);
+//   find_max(data, len);
+//   int maxValue = find_max(data, len);
+//   printf("%d\n", maxValue);
+//
+//   return 0;
+// }
+
+// 21------------------------------------------------------------------------------------
+// Develop a C program that prompts the user to enter a string (a sequence of
+// characters) and then calculates and prints the length of that string without
+// using the built-in strlen() function.
+
 int main(void) {
-  int data[] = {8, 15, 2, 70, 9, 33};
-  int len;
-  len = (sizeof data / sizeof data[0]);
-  find_max(data, len);
-  int maxValue = find_max(data, len);
-  printf("%d\n", maxValue);
+  char s[1024];
+  fgets(s, 1024, stdin);
+  printf("string: %s\n", s);
+
+  size_t stringPos = strcspn(s, "\n");
+  if (s[stringPos] == '\n') {
+    s[stringPos] = '\0';
+  }
+
+  int i;
+  for (i = 0; s[i] != '\0'; i++) {
+  }
+  printf("%d\n", i);
 
   return 0;
 }
