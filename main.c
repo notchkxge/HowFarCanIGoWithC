@@ -1,6 +1,7 @@
 // #include <stdbool.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -598,20 +599,120 @@ return 0;
 // characters) and then calculates and prints the length of that string without
 // using the built-in strlen() function.
 
+// int main(void) {
+//   char s[1024];
+//   fgets(s, 1024, stdin);
+//   printf("string: %s\n", s);
+//
+//   size_t stringPos = strcspn(s, "\n");
+//   if (s[stringPos] == '\n') {
+//     s[stringPos] = '\0';
+//   }
+//
+//   int i;
+//   for (i = 0; s[i] != '\0'; i++) {
+//   }
+//   printf("%d\n", i);
+//
+//   return 0;
+// }
+
+// 22------------------------------------------------------------------------------------
+// Write a C program to copy the contents of one string (source)
+// to another string (destination) manually without using
+// the built-in strcpy() function.
+
+// int main(void) {
+//   char source[] = "Copy Me !";
+//   char destination[20];
+//
+//   int len = strcspn(source, "\0");
+//   printf("%d\n", len);
+//   printf("%s\n", source);
+//
+//   return 0;
+// }
+// -----------------------------------------------------------------------
+// LIFO
+
+typedef struct {
+  int *collection;
+  int capacity;
+  int size;
+} Stack;
+
+Stack *createStack(int capacity);
+void destroyStack(Stack *stack);
+bool isEmpty(Stack *stack);
+bool isFull(Stack *stack);
+bool push(Stack *stack, int item);
+bool pop(Stack *stack, int *item);
+bool peek(Stack *stack, int *item);
+
 int main(void) {
-  char s[1024];
-  fgets(s, 1024, stdin);
-  printf("string: %s\n", s);
-
-  size_t stringPos = strcspn(s, "\n");
-  if (s[stringPos] == '\n') {
-    s[stringPos] = '\0';
+  Stack *stack = createStack(5);
+  if (stack == NULL) {
+    printf("stack not created\n");
+    return -1;
   }
-
-  int i;
-  for (i = 0; s[i] != '\0'; i++) {
+  if (isEmpty(stack)) {
+    printf("stack is empty\n");
   }
-  printf("%d\n", i);
+  push(stack, 1);
+  push(stack, 2);
+  push(stack, 3);
+  push(stack, 4);
+  push(stack, 5);
+  push(stack, 6);
+  push(stack, 10);
+  printf("stack size: %d\n", stack->size);
 
+  // printf("stack is full couldn't push %d \n", stack->size);
+  for (int i = 0; i < stack->capacity; i++) {
+    printf("stack: %d \n", stack->collection[i]);
+  }
+  destroyStack(stack);
   return 0;
+}
+
+Stack *createStack(int capacity) {
+  // check capacity > 0
+  if (capacity <= 0)
+    return NULL;
+  Stack *stack = malloc(sizeof(Stack));
+  if (stack == NULL)
+    return NULL;
+  stack->collection = malloc(sizeof(int) * capacity);
+  if (stack->collection == NULL) {
+    free(stack);
+    return NULL;
+  }
+  stack->capacity = capacity;
+  stack->size = 0;
+
+  return stack;
+}
+
+void destroyStack(Stack *stack) {
+  free(stack->collection);
+  free(stack);
+}
+
+bool isFull(Stack *stack) { return stack->capacity == stack->size; }
+
+bool isEmpty(Stack *stack) { return stack->size == 0; }
+
+bool push(Stack *stack, int item) {
+  if (stack == NULL) {
+    printf("no such stack\n");
+    return false;
+  }
+  if (isFull(stack)) {
+    printf("stack is full couldn't push %d \n", item);
+  } else {
+    stack->collection[stack->size] = item;
+    stack->size++;
+    return true;
+  }
+  return false;
 }
